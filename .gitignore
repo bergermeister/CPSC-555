@@ -163,7 +163,7 @@ DocProject/Help/*.HxC
 DocProject/Help/*.hhc
 DocProject/Help/*.hhk
 DocProject/Help/*.hhp
-DocProject/Help/Html2
+DocProject/Help/html2
 DocProject/Help/html
 
 # Click-Once directory
@@ -285,7 +285,7 @@ node_modules/
 *.vbw
 
 # Visual Studio LightSwitch build output
-**/*.HTMLClient/GeneratedArtifacts
+**/*.htmlClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
 **/*.DesktopClient/ModelManifest.xml
 **/*.Server/GeneratedArtifacts

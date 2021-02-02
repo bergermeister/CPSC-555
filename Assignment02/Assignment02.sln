@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EStore", "EStore\EStore.vbproj", "{D25699B5-CF3D-46B1-9F27-C805064A9960}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BootstrapApp", "BootstrapApp\BootstrapApp.vbproj", "{08290117-EF57-499B-97E1-0D0EE227772D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D25699B5-CF3D-46B1-9F27-C805064A9960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25699B5-CF3D-46B1-9F27-C805064A9960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25699B5-CF3D-46B1-9F27-C805064A9960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08290117-EF57-499B-97E1-0D0EE227772D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08290117-EF57-499B-97E1-0D0EE227772D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08290117-EF57-499B-97E1-0D0EE227772D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08290117-EF57-499B-97E1-0D0EE227772D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
