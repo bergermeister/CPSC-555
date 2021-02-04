@@ -110,6 +110,9 @@
     <Content Include="html9.htm" />
     <Content Include="imagemap.htm" />
     <Content Include="imagemap2.htm" />
+    <Content Include="images\hulu.gif" />
+    <Content Include="images\Landscape.jpg" />
+    <Content Include="images\yahoo.gif" />
     <Content Include="lifestyles.htm" />
     <Content Include="master.htm" />
     <Content Include="misctags.htm" />

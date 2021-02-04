@@ -3,25 +3,39 @@
 <html>
    <head>
       <title> Controlling Form Layout with a Table </title>
+      <style>
+         table {
+            border: 1px solid black;
+            width: 100%;
+         }
+         th, tr, td {
+            border: 1px solid black;
+         }
+
+         .center {
+            margin-left: auto;
+            margin-right: auto;
+         }
+      </style>
    </head>
    <body>
       <H2> Form Elements can be aligned better through a Table </H2>
       <HR>
-      <FORM METHOD=GET ACTION="">
-         <TABLE WIDTH=1 BORDER=0>
+      <FORM METHOD=GET ACTION="html10.htm">
+         <TABLE>
             <TR>
                <TD>&#160;&#160; <!-- space escape code -->
                <TD>Name:
-               <TD><INPUT Length=10 NAME=txtName>
+               <TD><input type="text" name="txtName" maxlength="10">
             <TR>
                <TD>
                <TD>Telephone:
-               <TD><INPUT NAME=txtPhone>
+               <TD><input type="text" name="txtPhone">
                <TR>
                <TD>
                <TD>
-               <TD><INPUT TYPE=submit value=SUBMIT>
-                   <INPUT TYPE=reset value=RESET>
+               <TD><input type="submit" value="Submit">
+                   <input type="reset" value="Reset">
                </TD>
             </TR>
          </TABLE>

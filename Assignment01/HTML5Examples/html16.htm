@@ -3,18 +3,24 @@
 <html>
    <head>
       <title>Web Table Example</title>
+      <style>
+         table, th, tr, td {
+            border: 1px solid black;
+         }
+         .center {
+            margin-left: auto;
+            margin-right: auto;
+         }
+      </style>
    </head>
    <body>
       <H2>Web Table Example - Use of COLSPAN/ROWSPAN</H2>
       <H3>Text can span more than one column or row with the use of 
           COLSPAN/ROWSPAN elements.</H3>
-      <CENTER>
-         <H4>Text and tables can also be centered using the CENTER tag!</H4>
-      </CENTER>
+      <H4 class="center">Text and tables can also be centered using the CENTER tag!</H4>
       <HR>
-      <CENTER>
-      <TABLE BORDER>
-         <TH COLSPAN=5>1996 Sales by Region (000's)</TH>
+      <TABLE class="center">
+         <tr><TH COLSPAN=5>1996 Sales by Region (000's)</TH></tr>
          <TR><TH> Quarter <TH> North <TH> East <TH> South <TH> West </TR>
          <TR><TH> Q1 	 <TD> 100    <TD> 150   <TD> 0	 <TD> 200   </TR>
          <TR><TH> Q2	 <TD> 150    <TD> 100   <TD> 100	 <TD> 300   </TR>
@@ -22,6 +28,5 @@
          <TR><TH> Q4	 <TD> 0       <TD> 200   <TD> 200	 <TD> 100   </TR>
          <TR><TH> Total	 <TH> 450    <TH> 450   <TH> 500	 <TH> 700   </TR>
       </TABLE>
-    </CENTER>
    </body>
 </html>

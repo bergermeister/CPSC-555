@@ -3,34 +3,39 @@
 <html>
    <head>
       <title>Web Table Example</title>
+      <style>
+         table, th, tr, td {
+            border: 1px solid black;
+         }
+         .center {
+            margin-left: auto;
+            margin-right: auto;
+         }
+      </style>
    </head>
    <body>
       <HR>
-      <CENTER>
-         <H2>Web Table Example - Images inside a Table</H2>
-         <H3>
-            Text and images can span more than one column or row with the
-            use of COLSPAN/ROWSPAN elements.
-         </H3>
-         <CENTER>
-            <H4>Text and tables can also be centered using the CENTER tag!</H4>
-         </CENTER>
-         <TABLE BORDER>
-            <TH COLSPAN=7>1996 Sales by Region (000's)</TH>
-            <TR>
-               <TH ROWSPAN=6><IMG SRC="d:/htmlex/1996.GIF"></TH>
-               <TH>
-               <TH> Quarter
-               <TH> North
-               <TH> East
-               <TH> South
-               <TH> West
-            <TR><TH><TH> Q1	 <TD> 100    <TD> 150   <TD> 0	 <TD> 200   </TR>
-            <TR><TH><TH> Q2	 <TD> 150    <TD> 100   <TD> 100	 <TD> 300   </TR>
-            <TR><TH><TH> Q3	 <TD> 200    <TD> 0      <TD> 200	 <TD> 100   </TR>
-            <TR><TH><TH> Q4	 <TD> 0       <TD> 200   <TD> 200	 <TD> 100   </TR>
-            <TR><TH><TH> Total         <TH> 450    <TH> 450   <TH> 500	 <TH> 700   </TR>
-         </TABLE>
-      </CENTER>
+      <H2 class="center">Web Table Example - Images inside a Table</H2>
+      <H3 class="center">
+         Text and images can span more than one column or row with the
+         use of COLSPAN/ROWSPAN elements.
+      </H3>
+      <H4 class="center">Text and tables can also be centered using the CENTER tag!</H4>
+      <TABLE class="center">
+         <tr><TH COLSPAN=7>1996 Sales by Region (000's)</TH></tr>
+         <TR>
+            <TH ROWSPAN=6><IMG SRC="images/hulu.gif" alt="Hulu"></TH>
+            <TH>
+            <TH> Quarter
+            <TH> North
+            <TH> East
+            <TH> South
+            <TH> West
+         <TR><TH><TH> Q1	 <TD> 100    <TD> 150   <TD> 0	 <TD> 200   </TR>
+         <TR><TH><TH> Q2	 <TD> 150    <TD> 100   <TD> 100	 <TD> 300   </TR>
+         <TR><TH><TH> Q3	 <TD> 200    <TD> 0      <TD> 200	 <TD> 100   </TR>
+         <TR><TH><TH> Q4	 <TD> 0       <TD> 200   <TD> 200	 <TD> 100   </TR>
+         <TR><TH><TH> Total         <TH> 450    <TH> 450   <TH> 500	 <TH> 700   </TR>
+      </TABLE>
    </body>
 </html> 

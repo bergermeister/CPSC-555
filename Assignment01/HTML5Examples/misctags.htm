@@ -4,18 +4,31 @@
    <head>
       <!--This example shows use of a few useful text formatting tags. -->
       <title> Miscellaneous Tags</title>  
+      <style>
+         p.big {
+            font-size: 18px;
+         }
+
+         p.small {
+            font-size: 10px;
+         }
+
+         p.verdana {
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 14px:
+         }
+      </style>
    </head>
    <body>
       BIG and SMALL Tags <BR>
       This text is normal default size.
-      <BIG> 
+      <p class="big">
          This text will appear one size larger than the 
          surrounding text 
-      </BIG>
-      <SMALL>  
-         This text will appear one size larger than the 
-         surrounding text 
-      </SMALL>
+      </p>
+      <p class="small">
+         This text will appear one size smaller than the surrounding text 
+      </p>
       Normal size text again. <BR>
       <BR>
       <HR>
@@ -25,9 +38,9 @@
       <I>f<sub>x</sub></I> = <I>x<sup>2</sup>+2 </I><BR>
       <BR>
       <HR>
-      <FONT size=4 FACE="Verdana, Arial, sans-serif"> 
-         some text in a different FONT 
-      </FONT>
+      <p class="verdana">
+         some text in a different FONT
+      </p>
       <HR>
          List Items with alphabetic, Roman bullets. <BR>
       <OL TYPE=a>			

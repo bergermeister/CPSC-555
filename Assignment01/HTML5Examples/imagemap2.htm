@@ -3,21 +3,32 @@
 <html>
    <head>
       <title> Image Maps </title>
+      <style>
+         .center {
+            margin-left: auto;
+            margin-right: auto;
+         }
+         img {
+            border: 0;
+            width: 200;
+            height: 200;
+         }
+      </style>
    </head>
    <body>
       <H2> Image Maps - A hot spot exists for different portions on the Image</H2>
       By moving the mouse over each hot spot, the URL assocated with each hot spot is
       displayed in the lower left hand portion of the Web browser.
-      <P><Align=center>
-         &nbsp;&nbsp;<IMG SRC="yahoocard.gif" USEMAP=#MyMap BORDER=0 WIDTH=200 HEIGHT=200>
+      <P class="center">
+         &nbsp;&nbsp;<IMG SRC="images/yahoo.gif" alt="Yahoo" USEMAP=#MyMap>
       </P>
 
       <MAP NAME=MyMap>
-         <AREA SHAPE="rect" coords="0,0,200,75" href="http://www.yahoo.com">
-          <AREA SHAPE="circle" coords="100,100,25" href="http://www.amazon.com">
-          <AREA SHAPE="polygon" coords="0,200,50,100,100,200" href="http://www.microsoft.com">
-          <AREA SHAPE="rect" coords="150,150,200,200" NOHREF>
-          <AREA SHAPE="default" href="default.htm">
+         <area shape="rect" alt="Yahoo.com" coords="0,0,200,75" href="http://www.yahoo.com">
+         <area shape="circle" alt="Amazon.com" coords="100,100,25" href="http://www.amazon.com">
+         <area shape="poly" alt="Microsoft.com" coords="0,200,50,100,100,200" href="http://www.microsoft.com">
+         <area shape="rect" coords="150,150,200,200" >
+         <area shape="default" alt="Default" href="default.htm">
       </MAP>
    </body>
 </html>
