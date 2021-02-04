@@ -7,6 +7,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EStore", "EStore\EStore.vbp
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BootstrapApp", "BootstrapApp\BootstrapApp.vbproj", "{08290117-EF57-499B-97E1-0D0EE227772D}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EStoreBoot", "EStoreBoot\EStoreBoot.vbproj", "{0C5E1068-5AA6-4D73-9F2E-FF854A144593}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{08290117-EF57-499B-97E1-0D0EE227772D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08290117-EF57-499B-97E1-0D0EE227772D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08290117-EF57-499B-97E1-0D0EE227772D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5E1068-5AA6-4D73-9F2E-FF854A144593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5E1068-5AA6-4D73-9F2E-FF854A144593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5E1068-5AA6-4D73-9F2E-FF854A144593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5E1068-5AA6-4D73-9F2E-FF854A144593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
