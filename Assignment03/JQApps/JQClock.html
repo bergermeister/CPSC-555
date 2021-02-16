@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JQuery Clock</title>
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <style>
+        body{
+            font-family:Arial;
+            font-size:12pt;
+        }
+        .cstyleGreen {
+            font-weight:bold;
+            background-color: #bbffbb;  /* light green */
+            color:black;
+            border:2px solid green;
+        }
+        .cstyleYellow {
+            font-weight: bold;
+            background-color: #ffffaa; /* light yellow */
+            color: red;
+            border: 2px solid green;
+        }
+        .cstyleRed {
+            font-weight: bold;
+            background-color:red; 
+            color: yellow;
+            border: 3px solid aqua;
+        }
+    </style>
+    <script>
+        $(function () {
+            myClock();
+        });
+        var tm;   // timer object
+        var pos = 0;  // position of clock
+        function myClock() {
+            var d1 = new Date();  // initializes to current date and time
+            var hours = d1.getHours();
+            if (hours < 10)
+                hours = "0" + hours;
+            var mins = d1.getMinutes();
+            if (mins < 10)
+                mins = "0" + mins;
+            var secs = d1.getSeconds();
+            if (secs < 10)
+                secs = "0"+ secs;
+            var currTime = hours + ":" + mins + ":" + secs;
+            $("#divClock").text(currTime);
+            $("#divClock").css({ 'left': pos, 'top': 0 });
+            pos = pos + 5;  // move 5 pixels to the right
+            if (pos > 50) {
+                // when changing the css, make sure you remove the existing css
+                // before adding a new css
+                $("#divClock").removeClass("cstyleGreen");
+                $("#divClock").addClass("cstyleYellow");
+            }
+            if (pos > 75) {
+                $("#divClock").removeClass("cstyleYellow");
+                $("#divClock").addClass("cstyleRed");
+            }
+            tm = setTimeout("myClock()", 1000);  // interval is in milliseconds
+            if (pos > 100)
+                clearTimeout(tm);
+        }
+    </script>
+</head>
+<body>
+    <div class="cstyleGreen" style="position:absolute" id="divClock"></div>
+    <br/>
+    <br/>
+    <h2>Online Test</h2>
+    Is Javascript compiled language?
+</body>
+</html>

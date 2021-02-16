@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JQ Object Inspection</title>
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            $("input[name=btnInspect]").click(function () {
+                var js1 = { "name": "Baker", "address": "45 main Street" };
+                // alert(js1);
+                // to examine a JSON object, use JSON.stringify function
+                //alert(JSON.stringify(js1));
+                // array of JSON objects are put in [{..},{..}]
+                var jsonStr = '[{ "name": "Baker", "address": "45 main Street","id":1234 },' +
+                '{ "name": "Sally", "address": "33 main Street", "id": 1235 },' + 
+                    '{ "name": "Adma", "address": "77 main Street", "id": 1238 }]';
+                // to convert JSON string to a JSON object, use $.parseJSON
+                var jsonObj = $.parseJSON(jsonStr);
+                var res = "";
+                $.each(jsonObj, function (key, val) {
+                    res += JSON.stringify(val);
+                });
+                //alert(res);
+                // often we bring JSON array type of data from a web service
+                // To display it, we need to loop over it and convert it to a table
+                var out = "<table border='1'><tr>";
+                $.each(jsonObj[0], function (key, val) {
+                    out += "<th>" + key + "</th>";
+                });
+                out += "</tr>";
+                $.each(jsonObj, function (key, val) {
+                    out += "<tr>";
+                    $.each(val, function (key, value) {
+                        out += "<td>" + value + "</td>";
+                    });
+                    out += "</tr>";
+                });
+                out += "</table>";
+                //$("#dout").text(out);
+                $("#dout").html(out);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Inspecting JSON data returned from a Service and Object properties</h2>
+    <form name="f1">
+        <input type="button" name="btnInspect" value="JSON/Object Inspection"/>
+    </form>
+    <div id="dout"></div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+      <style type="text/css">
+         body {
+            font-family: Arial;
+            font-size: 12pt;
+         }
+
+         .listOver {
+            color: green;
+            background-color: #ffff80; /* light yellow color */
+         }
+
+         .listOut {
+            color: black;
+            background-color: white;
+         }
+      </style>
+   </head>
+   <body>
+      <p>
+         $ means ends with, ^ means begins with in a JQuery selector
+      </p>
+      <p>
+         One of the popular ways to iterate in JQuery is the $.each loop or each loop
+      </p>
+      <h2>Test of JQuery Actions</h2>
+      <ul>
+         <li>first item A</li>
+         <li>second item B</li>
+      </ul>
+      <ul id="mylist1">
+         <li>first item</li>
+         <li>second item</li>
+      </ul>
+      <ul id="mylist">
+         <li>
+            Examples of JQuery actions are hide, show, css, addClass,
+            removeClass etc..
+         </li>
+         <li>You should remove a class before adding a class to an element</li>
+         <li>JQuery allows us to chain actions</li>
+         <li>
+            If an action requires multiple name, value pairs
+            then you can pass these as a JSON object
+         </li>
+         <li>You can use text() to select the text inside a paragraph or div</li>
+         <li>use val() to read or modify data for input elements</li>
+      </ul>
+      <form name="f1">
+         <input name="btnTest" value="Test" type="button" />
+         <input name="btnHide" value="Hide" type="button" />
+         <input name="btnShow" value="Show" type="button" />
+      </form>
+      <script src="Scripts/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+           $(function () {
+               $("input[name=btnHide]").click(function () {
+                   $("p:eq(0)").hide();
+               });
+               $("input[name=btnShow]").click(function () {
+                   $("p:eq(0)").show();
+               });
+               $("h2").css("background-color", "blue");
+               $("input[name=btnTest]").click(function () {
+                   // $("ul[id=mylist]>li:eq(2)").css("color", "red").css("background-color","#f0f0f0");
+                   // we can pass a json object for many name,value pairs for a css
+                   //$("ul[id=mylist]>li:eq(2)").css({
+                   //    "color": "purple", "background-color": "yellow","font-size":"14pt"});
+                   // $("ul[id*=my]>li").css({
+                   //     "color": "purple", "background-color": "yellow", "font-size": "14pt"
+                   // });
+                   //$("ul[id$=list]>li").css({  // $ means ends with
+                   //    "color": "purple", "background-color": "yellow", "font-size": "14pt"
+                   //});
+                   $("ul[id^=mylis]>li").css({  // ^ means begins with
+                       "color": "purple", "background-color": "yellow", "font-size": "14pt"
+                   });
+
+                   $("p").each(function () {
+                       var ptext = $(this).text();
+                       var pos = ptext.indexOf("popular");
+                       if (pos >= 0)
+                           $(this).css("background-color", "aqua");
+                   });
+
+               });
+
+               $("ul>li").mouseover(function () {
+                   $(this).removeClass("listOut");
+                   $(this).addClass("listOver");
+               });
+               $("ul>li").mouseout(function () {
+                   $(this).removeClass("listOver");
+                   $(this).addClass("listOut");
+               });
+           });
+      </script>
+   </body>
+</html>

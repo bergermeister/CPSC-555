@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+      <style type="text/css">
+         .highlight {
+            font-family: Arial;
+            font-size: 12pt;
+            background-color: yellow;
+         }
+
+         .info {
+            color: green;
+            border: 1px solid red;
+         }
+      </style>
+   </head>
+   <body>
+      <h2>Test of JQuery Selectors</h2>
+      <p class="info">
+         Test of paragraph and its selection by jquery via a class
+      </p>
+      <ul>
+         <li>JQuery can select by an HTML Element</li>
+         <li>It can select by an ID</li>
+         <li>It can select by an attribute</li>
+         <li>It can select by direct or indirect children</li>
+         <li>It can select a particular index or a range</li>
+      </ul>
+      <p id="pa">A paragraph for testing</p>
+      <div id="d1">
+         We will first learn different JQuery selectors
+         <p>
+            <ul>
+               <li>list item inside a paragraph that is inside a div</li>
+               <li>second level child of div</li>
+            </ul>
+         </p>
+         <ul id="mylist">
+            <li>JQuery has different methods to make AJAX calls</li>
+            <li>Of these $.ajax is the most versatile</li>
+            <li>Important - Javascript is case sensitive</li>
+         </ul>
+      </div>
+      <p>
+         This paragraph is sibling of div with an id of d1
+      </p>
+      <form name="f1">
+         <pre>
+               First Name : <input name="txtFNM" />
+
+
+
+               Last Name  : <input name="txtLNM" />
+
+
+
+         <input type="button" name="btnTest" value="Test" />
+
+
+
+         </pre>
+      </form>
+      <pre>
+      this is line 1
+      this is              line 2
+      this is line 3
+      </pre>
+      <script src="Scripts/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+         $(function () {   // initialization function   $(document).ready(
+            // attach event handlers
+            $("input[name=btnTest]").click(function () {
+               //$("#d1").addClass("highlight");
+               //$("#mylist").addClass("highlight");
+               //$("ul").addClass("highlight");
+               //$("p").addClass("highlight");
+               // select those paragraphs that are inside a div
+               //$("div>p").addClass("highlight"); // > means direct first level children
+               //$("div ul").addClass("highlight");
+               //$("#pa,#d1").addClass("highlight");
+               //$(".info").addClass("highlight");  // selection by css class
+               //$("ul>li:eq(1)").addClass("highlight");   // 0 based indexing
+               //$("ul>li:nth-child(2)").addClass("highlight");  // 1 based indexing
+               //$("ul>li:even").addClass("highlight");
+               //$("body>ul>li:gt(2)").addClass("highlight");
+               //$("input[name=txtFNM]").addClass("highlight");
+               // $("form[name=f1] input:eq(1)").addClass("highlight");  // space any level children
+               // $("form[name=f1]>input:eq(1)").addClass("highlight");  // > first level children
+               // $("form[name=f1]>pre>input:eq(1)").addClass("highlight");  // space any level children
+               // $("#mylist>li:contains('Important')").addClass("highlight");
+               //$("#mylist").parent().addClass("highlight");
+               $("body>ul>li").slice(1, 3).addClass("highlight");  // n-1,  will select 1,2
+
+               // select all input elements that are not buttons
+               //$("input:not([type=button]").addClass("highlight");
+
+               //$(":text").addClass("highlight");  // select those elements that have a text attribute
+
+            });
+         });
+      </script>
+   </body>
+</html>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+   </head>
+   <body>
+      <h2>JSON data and its parsing</h2>
+      <form name="f1">
+         <input type="button" value="Test" name="btnTest" />
+      </form>
+      <div id="d1"></div>
+      <div id="d2"></div>
+      <div id="d3"></div>
+      <hr />
+      <ul>
+         <li>First Item</li>
+         <li>Second Item</li>
+         <li>Third Item</li>
+      </ul>
+      <script src="Scripts/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+         $(function () {
+             $("input[name=btnTest]").click(testJSON);  // testJSON is a delegate
+         });
+
+         function testJSON() {
+            var jsonStr = '[{"ProductName":"Laptop","Price":"455.50","ProductId":"1234"},' +
+                '{"ProductName":"Calculator","Price":"25.50","ProductId":"1235"},' +
+                '{"ProductName":"Tennis Racket","Price":"155.50","ProductId":"1236"},' +
+                '{"ProductName":"Golf Clubs","Price":"255.50","ProductId":"1237"}]';
+            // to convert a json string to a json object, use $.parseJSON  JQuery method
+            var jsonObj = $.parseJSON(jsonStr);
+            // from a JSON object, we can extract the values of different fields
+            // when given a JSON object, we can iterate over it using a simple for loop
+            // or an each loop
+            var out1 = "<ul>";
+            for (var i in jsonObj) {  // i will vary from 0 to 3 - names of fields are known
+                out1 += "<li>" + jsonObj[i].ProductName + " " + jsonObj[i].Price + " " +
+                    jsonObj[i].ProductId + "</li>";
+            }
+            out1 += "</ul>";
+            $("#d1").html(out1);
+
+            // suppose names of fields are not known to us in a json object
+            var out2 = "";
+            $.each(jsonObj, function (key, value) {  // loops over all records
+                // value will point to each record
+                $.each(value, function (key, val) {  // loops over each field in a record
+                    out2 += key + " " + val + " ";
+                });
+                out2 += "<br/>";
+            });
+            $("#d2").html(out2);
+
+            // extract the names of columns from the first record in a json object
+            var out3 = "<table style='border-collapse:collapse;border:1px solid red'><tr>";
+            if (jsonObj.length > 0) {
+               $.each(jsonObj[0], function (key, value) {
+                   out3 += "<th style='border:1px solid red'>" + key + "</th>";
+               });
+               out3 += "</tr>";
+               // extract data for all records
+               $.each(jsonObj, function (key, value) {
+                   out3 += "<tr>";
+                   $.each(value, function (key, val) {
+                       out3 += "<td style='border:1px solid red'>" + val + "</td>"
+                   });
+                   out3 += "</tr>";
+               });
+            }
+            out3 += "</table>";
+            $("#d3").html(out3);
+
+            $("ul>li").each(function () {
+                $(this).css("background-color", "green");
+            })
+         }
+      </script>
+   </body>
+</html>

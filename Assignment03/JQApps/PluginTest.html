@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Plugin Test</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="myscripts/myplugins.js"></script>
+    <script>
+        $(function () {
+            $("p").drawBox();
+            $("div").drawBox({ 'color': 'green', 'backgroundColor': 'yellow' });
+            $("#t1").bootTable();
+        })
+    </script>
+</head>
+<body>
+    <h2>Test of Or Plugins</h2>
+    <br/>
+    <p>Hello there how are you</p>
+    <br/>
+    <div>There are many useful plugins out there</div>
+    <br/>
+    <table id="t1">
+        <tr><th>Fruit</th><th>Price</th><th>Quantity per Box</th></tr>
+        <tr><td>Apples</td><td>24.50</td><td>50</td></tr>
+        <tr><td>Oranges</td><td>27.50</td><td>80</td></tr>
+        <tr><td>Plums</td><td>14.50</td><td>100</td></tr>
+        <tr><td>Mangoes</td><td>37.50</td><td>50</td></tr>
+        <tr><td>Bananas</td><td>17.50</td><td>60</td></tr>
+    </table>
+</body>
+</html>

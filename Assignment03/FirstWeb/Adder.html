@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+   </head>
+   <body onload="init()">
+      <h2>Simple Web Adder</h2>
+      <form name="f1">
+         <pre>
+         First Number : <input type="text" onkeypress="return handleKey1()" id="txtNum1" name="txtNum1" />
+
+         Second Number: <input type="text" onkeypress="return handleKey2()" id="txtNum2" name="txtNum2" />
+
+                        ---------------
+         Result       : <input type="text" name="txtResult" />
+
+         <input type="button" name="btnAdd" onclick="doAdd()" value="+" />
+                      
+         <input type="button" value="Test" name="btnTest" onclick="test()" />
+
+         </pre>
+      </form>
+      <hr />
+      <table>
+         <tr><th>Year</th><th>Sales</th></tr>
+         <tr><td>2015</td><td><span id="sales2015"></span></td></tr>
+      </table>
+      
+      <script type="text/javascript">
+         function doAdd() {
+            //var num1 = parseFloat(document.f1.txtNum1.value);
+            var num1 = parseFloat(document.getElementById("txtNum1").value);
+            if (!(validateTextbox(document.f1.txtNum1, "invalid first Number..")))
+               return;
+            //if (isNaN(num1)) {
+            //    alert("invalid first number..");
+            //    document.f1.txtResult.value = "";
+            //    return;
+            //}
+            var num2 = parseFloat(document.f1.txtNum2.value);
+            if (!(validateTextbox(document.f1.txtNum2, "invalid second Number..")))
+               return;
+            //if (isNaN(num2)) {
+            //    alert("invalid second number..");
+            //    document.f1.txtResult.value = "";
+            //    return;
+            //}
+            var res = num1 + num2;
+            document.f1.txtResult.value = res;
+         }
+
+         function validateTextbox(txtN, errMsg) {
+            if (txtN.value.length == 0) {
+               alert("blank textbox");
+               return false;
+            }
+
+            var num = txtN.value;
+            if (isNaN(num)) {
+               alert(errMsg);
+               document.f1.txtResult.value = "";
+               return false;  // indicates invalid number
+            }
+            return true;   // indicates number is Ok
+         }
+
+         function handleKey1() {
+            var key = window.event.keyCode;  //ASCII code for key
+            if (key == 13)  // enter key
+               document.f1.txtNum2.focus();
+            // cancel keystrokes that are out of the range of 0-9 or decimal
+            if (!(((key >= 48) && (key <= 57)) || (key == 46)))
+               return false;   // cancel the keystroke
+         }
+
+         function handleKey2() {
+            var key = window.event.keyCode;  //ASCII code for key
+            if (key == 13)  // enter key
+               doAdd();
+            // cancel keystrokes that are out of the range of 0-9 or decimal
+            if (!(((key >= 48) && (key <= 57)) || (key == 46)))
+               return false;   // cancel the keystroke
+         }
+
+         function init() {
+            document.f1.txtNum1.focus();
+         }
+         function test() {
+            // call web service to determine sales for 2015
+            document.getElementById("sales2015").innerText = 250000;
+         }
+      </script>
+   </body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+   </head>
+   <body>
+      <div id="mm" style="width:300px;height:300px;border:1px solid red"></div>
+      <div id="mp" style="position:absolute;border:1px solid green"></div>
+      <script src="Scripts/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+         $(function () {
+            $("#mm").mousemove(function (e) {
+                var out1 = "x:" + e.clientX + " y:" + e.clientY;
+                $("#mp").css("left", e.clientX).css("top", e.clientY).css("width", 100)
+                    .css("height", 20);
+                $("#mp").html(out1);
+            });
+         });
+      </script>
+   </body>
+</html>

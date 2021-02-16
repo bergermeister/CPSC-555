@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Image Viewing via JQuery</title>
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <style>
+        ul#imglist>li{
+            display:inline;   /* to display li items horizontally*/
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#imglist a").click(function (ev) {
+                var imgurl = $(this).attr("href");
+                // set the imgeurl to the src attribute of myimage
+                $("#myimage").attr("src", imgurl);
+                // find the title of the image
+                var title = $(this).attr("title");
+                $("#caption").text(title);
+                ev.preventDefault();  // cancel the click event
+            });
+
+            $("#imglist a").mouseover(function (ev) {
+                var imgurl = $(this).attr("href");
+                // set the imgeurl to the src attribute of myimage
+                $("#myimage").attr("src", imgurl);
+                // find the title of the image
+                var title = $(this).attr("title");
+                $("#caption").text(title);
+                ev.preventDefault();  // cancel the click event
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Image Viwing via JQuery</h2>
+    <ul id="imglist">
+        <li>
+            <a href="Images/car1.jpg" title="car 1">
+                <img src="Images/thumbnails/car1.jpg" width="100" />
+            </a>
+        </li>
+        <li>
+            <a href="Images/car2.jpg" title="car 2">
+                <img src="Images/thumbnails/car2.jpg" width="100" />
+            </a>
+        </li>
+        <li>
+            <a href="Images/car3.jpg" title="car 3">
+                <img src="Images/thumbnails/car3.jpg" width="100" />
+            </a>
+        </li>
+    </ul>
+    <h2 id="caption">My Cars 1-3</h2>
+    <p><img src="Images/car1.jpg" id="myimage"/></p>
+</body>
+</html>

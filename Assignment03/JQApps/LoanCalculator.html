@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Loan Calculator</title>
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            font-family:Arial;
+            font-size:12pt;
+        }
+        .button {
+            color:green;
+            background-color:yellow;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#btnCalculate").click(computeLoanPayment);
+        });
+
+        function computeLoanPayment() {
+            var amt = $("#txtAmount").val();
+            var rate = $("#txtRate").val();
+            var dur = $("#txtDur").val();
+            // call the service to determine monthly payment
+            // compose JSON data to be posted to the service
+            var postData = "{'amt':" + amt + "," +
+                "'rate':" + rate + "," +
+                "'dur':" + dur + "}";
+            //alert(postData);
+            // JQuery gives us an ajax method for making service calls
+            $.ajax({
+                type: "POST",
+                url: "LoanService.asmx/ComputeMonthlyPayment",
+                data: postData,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) { getMonthlySucceeded(res) },
+                error: function (res) { alert(res.statusText) },
+                timeout: 5000
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "LoanService.asmx/ComputeTotalPayment",
+                data: postData,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) { getTotalSucceeded(res) },
+                error: function (res) { alert(res.statusText) },
+                timeout: 5000
+            });
+        }
+
+        function getMonthlySucceeded(res) {
+            // display the result in txtMonthly textbox
+            //alert(JSON.stringify(res));
+            $("#txtMonthly").val("$" + res.d.toFixed(2));
+        }
+
+        function getTotalSucceeded(res) {
+            $("#txtTotal").val("$" + res.d.toFixed(2));
+        }
+       
+    </script>
+</head>
+<body>
+    <h2>Loan Calculator</h2>
+    <table style="width:500px;border:1px solid red">
+        <tr><td>Amount</td><td><input type="text" name="txtAmount" id="txtAmount" /></td></tr>
+        <tr><td>Rate</td><td><input type="text" name="txtRate" id="txtRate" /></td></tr>
+        <tr><td>Duration</td><td><input type="text" name="txtDur" id="txtDur" /></td></tr>
+        <tr><td>Monthly Payment</td><td><input type="text" name="txtMonthly" id="txtMonthly" /></td></tr>
+        <tr><td>Total Payment</td><td><input type="text" name="txtTotal" id="txtTotal" /></td></tr>
+        <tr><td></td><td><input class="button" type="button" name="btnCalculate" id="btnCalculate" value="Calculate" /></td></tr>
+    </table>
+</body>
+</html>
