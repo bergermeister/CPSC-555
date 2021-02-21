@@ -79,22 +79,22 @@
                // select those paragraphs that are inside a div
                //$("div>p").addClass("highlight"); // > means direct first level children
                //$("div ul").addClass("highlight");
-               //$("#pa,#d1").addClass("highlight");
-               //$(".info").addClass("highlight");  // selection by css class
+               $("#pa,#d1").addClass("highlight");
+               $(".info").addClass("highlight");  // selection by css class
                //$("ul>li:eq(1)").addClass("highlight");   // 0 based indexing
                //$("ul>li:nth-child(2)").addClass("highlight");  // 1 based indexing
-               //$("ul>li:even").addClass("highlight");
+               $("ul>li:even").addClass("highlight");
                //$("body>ul>li:gt(2)").addClass("highlight");
                //$("input[name=txtFNM]").addClass("highlight");
-               // $("form[name=f1] input:eq(1)").addClass("highlight");  // space any level children
-               // $("form[name=f1]>input:eq(1)").addClass("highlight");  // > first level children
-               // $("form[name=f1]>pre>input:eq(1)").addClass("highlight");  // space any level children
-               // $("#mylist>li:contains('Important')").addClass("highlight");
+               //$("form[name=f1] input:eq(1)").addClass("highlight");  // space any level children
+               //$("form[name=f1]>input:eq(1)").addClass("highlight");  // > first level children
+               //$("form[name=f1]>pre>input:eq(1)").addClass("highlight");  // space any level children
+               //$("#mylist>li:contains('Important')").addClass("highlight");
                //$("#mylist").parent().addClass("highlight");
-               $("body>ul>li").slice(1, 3).addClass("highlight");  // n-1,  will select 1,2
+               //$("body>ul>li").slice(1, 3).addClass("highlight");  // n-1,  will select 1,2
 
                // select all input elements that are not buttons
-               //$("input:not([type=button]").addClass("highlight");
+               $("input:not([type=button]").addClass("highlight");
 
                //$(":text").addClass("highlight");  // select those elements that have a text attribute
 
