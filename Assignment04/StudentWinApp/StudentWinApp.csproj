@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="FormCourseEnrollment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormCoursesOffered.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormRegisterForCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Form1 - Copy %282%29 - Copy.resx">
+      <DependentUpon>Form1 - Copy (2).resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy %282%29.resx">
+      <DependentUpon>Form1.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy %283%29.resx">
+      <DependentUpon>Form1.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy - Copy %282%29.resx">
+      <DependentUpon>Form1 - Copy.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy - Copy - Copy.resx">
+      <DependentUpon>Form1 - Copy - Copy.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy - Copy.resx">
+      <DependentUpon>Form1 - Copy.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Form1 - Copy.resx">
+      <DependentUpon>Form1.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
