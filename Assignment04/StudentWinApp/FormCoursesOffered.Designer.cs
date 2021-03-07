@@ -29,57 +29,80 @@ namespace StudentWinApp
       /// </summary>
       private void InitializeComponent( )
       {
-         this.btnShowCoursesOffered = new System.Windows.Forms.Button();
-         this.btnShowCourseEnrollment = new System.Windows.Forms.Button();
-         this.btnShowRegisterForACourse = new System.Windows.Forms.Button();
+         this.label2 = new System.Windows.Forms.Label();
+         this.dgCoursesOffered = new System.Windows.Forms.DataGridView();
+         this.label1 = new System.Windows.Forms.Label();
+         this.cmbSemesters = new System.Windows.Forms.ComboBox();
+         ((System.ComponentModel.ISupportInitialize)(this.dgCoursesOffered)).BeginInit();
          this.SuspendLayout();
          // 
-         // btnShowCoursesOffered
+         // label2
          // 
-         this.btnShowCoursesOffered.Location = new System.Drawing.Point(119, 43);
-         this.btnShowCoursesOffered.Name = "btnShowCoursesOffered";
-         this.btnShowCoursesOffered.Size = new System.Drawing.Size(155, 23);
-         this.btnShowCoursesOffered.TabIndex = 0;
-         this.btnShowCoursesOffered.Text = "Show Courses Offered";
-         this.btnShowCoursesOffered.UseVisualStyleBackColor = true;
+         this.label2.AutoSize = true;
+         this.label2.Location = new System.Drawing.Point(410, 9);
+         this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+         this.label2.Name = "label2";
+         this.label2.Size = new System.Drawing.Size(83, 13);
+         this.label2.TabIndex = 7;
+         this.label2.Text = "Courses Offered";
          // 
-         // btnShowCourseEnrollment
+         // dgCoursesOffered
          // 
-         this.btnShowCourseEnrollment.Location = new System.Drawing.Point(119, 87);
-         this.btnShowCourseEnrollment.Name = "btnShowCourseEnrollment";
-         this.btnShowCourseEnrollment.Size = new System.Drawing.Size(155, 23);
-         this.btnShowCourseEnrollment.TabIndex = 1;
-         this.btnShowCourseEnrollment.Text = "Show Course Enrollment";
-         this.btnShowCourseEnrollment.UseVisualStyleBackColor = true;
+         this.dgCoursesOffered.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+         this.dgCoursesOffered.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+         this.dgCoursesOffered.Location = new System.Drawing.Point(129, 29);
+         this.dgCoursesOffered.Margin = new System.Windows.Forms.Padding(1);
+         this.dgCoursesOffered.Name = "dgCoursesOffered";
+         this.dgCoursesOffered.RowTemplate.Height = 40;
+         this.dgCoursesOffered.Size = new System.Drawing.Size(463, 238);
+         this.dgCoursesOffered.TabIndex = 6;
          // 
-         // btnShowRegisterForACourse
+         // label1
          // 
-         this.btnShowRegisterForACourse.Location = new System.Drawing.Point(119, 135);
-         this.btnShowRegisterForACourse.Name = "btnShowRegisterForACourse";
-         this.btnShowRegisterForACourse.Size = new System.Drawing.Size(155, 23);
-         this.btnShowRegisterForACourse.TabIndex = 2;
-         this.btnShowRegisterForACourse.Text = "Course Registration";
-         this.btnShowRegisterForACourse.UseVisualStyleBackColor = true;
+         this.label1.AutoSize = true;
+         this.label1.Location = new System.Drawing.Point(26, 9);
+         this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+         this.label1.Name = "label1";
+         this.label1.Size = new System.Drawing.Size(51, 13);
+         this.label1.TabIndex = 5;
+         this.label1.Text = "Semester";
          // 
-         // Form1
+         // cmbSemesters
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+         this.cmbSemesters.FormattingEnabled = true;
+         this.cmbSemesters.Location = new System.Drawing.Point(5, 29);
+         this.cmbSemesters.Margin = new System.Windows.Forms.Padding(1);
+         this.cmbSemesters.Name = "cmbSemesters";
+         this.cmbSemesters.Size = new System.Drawing.Size(107, 21);
+         this.cmbSemesters.TabIndex = 4;
+         this.cmbSemesters.SelectedIndexChanged += new System.EventHandler(this.cmbSemesters_SelectedIndexChanged);
+         // 
+         // FormCoursesOffered
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(401, 218);
-         this.Controls.Add(this.btnShowRegisterForACourse);
-         this.Controls.Add(this.btnShowCourseEnrollment);
-         this.Controls.Add(this.btnShowCoursesOffered);
-         this.Name = "Form1";
-         this.Text = "Form1";
+         this.ClientSize = new System.Drawing.Size(602, 329);
+         this.Controls.Add(this.label2);
+         this.Controls.Add(this.dgCoursesOffered);
+         this.Controls.Add(this.label1);
+         this.Controls.Add(this.cmbSemesters);
+         this.Name = "FormCoursesOffered";
+         this.Text = "FormCoursesOffered";
+         this.Load += new System.EventHandler(this.FormCoursesOffered_Load);
+         ((System.ComponentModel.ISupportInitialize)(this.dgCoursesOffered)).EndInit();
          this.ResumeLayout(false);
+         this.PerformLayout();
 
       }
 
       #endregion
 
-      private System.Windows.Forms.Button btnShowCoursesOffered;
-      private System.Windows.Forms.Button btnShowCourseEnrollment;
-      private System.Windows.Forms.Button btnShowRegisterForACourse;
+      private System.Windows.Forms.Label label2;
+      private System.Windows.Forms.DataGridView dgCoursesOffered;
+      private System.Windows.Forms.Label label1;
+      private System.Windows.Forms.ComboBox cmbSemesters;
    }
 }
 

@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace StudentWinApp
 {
+   using System;
+   using System.Windows.Forms;
+
    static class Program
    {
       /// <summary>
@@ -14,7 +11,6 @@ namespace StudentWinApp
       [STAThread]
       static void Main( )
       {
-         Application.SetHighDpiMode( HighDpiMode.SystemAware );
          Application.EnableVisualStyles( );
          Application.SetCompatibleTextRenderingDefault( false );
          Application.Run( new Form1( ) );

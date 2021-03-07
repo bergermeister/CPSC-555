@@ -36,36 +36,39 @@ namespace StudentWinApp
          // 
          // btnShowCoursesOffered
          // 
-         this.btnShowCoursesOffered.Location = new System.Drawing.Point(119, 43);
+         this.btnShowCoursesOffered.Location = new System.Drawing.Point(102, 37);
          this.btnShowCoursesOffered.Name = "btnShowCoursesOffered";
-         this.btnShowCoursesOffered.Size = new System.Drawing.Size(155, 23);
+         this.btnShowCoursesOffered.Size = new System.Drawing.Size(133, 20);
          this.btnShowCoursesOffered.TabIndex = 0;
          this.btnShowCoursesOffered.Text = "Show Courses Offered";
          this.btnShowCoursesOffered.UseVisualStyleBackColor = true;
+         this.btnShowCoursesOffered.Click += new System.EventHandler(this.btnShowCoursesOffered_Click);
          // 
          // btnShowCourseEnrollment
          // 
-         this.btnShowCourseEnrollment.Location = new System.Drawing.Point(119, 87);
+         this.btnShowCourseEnrollment.Location = new System.Drawing.Point(102, 75);
          this.btnShowCourseEnrollment.Name = "btnShowCourseEnrollment";
-         this.btnShowCourseEnrollment.Size = new System.Drawing.Size(155, 23);
+         this.btnShowCourseEnrollment.Size = new System.Drawing.Size(133, 20);
          this.btnShowCourseEnrollment.TabIndex = 1;
          this.btnShowCourseEnrollment.Text = "Show Course Enrollment";
          this.btnShowCourseEnrollment.UseVisualStyleBackColor = true;
+         this.btnShowCourseEnrollment.Click += new System.EventHandler(this.btnShowCourseEnrollment_Click);
          // 
          // btnShowRegisterForACourse
          // 
-         this.btnShowRegisterForACourse.Location = new System.Drawing.Point(119, 135);
+         this.btnShowRegisterForACourse.Location = new System.Drawing.Point(102, 117);
          this.btnShowRegisterForACourse.Name = "btnShowRegisterForACourse";
-         this.btnShowRegisterForACourse.Size = new System.Drawing.Size(155, 23);
+         this.btnShowRegisterForACourse.Size = new System.Drawing.Size(133, 20);
          this.btnShowRegisterForACourse.TabIndex = 2;
          this.btnShowRegisterForACourse.Text = "Course Registration";
          this.btnShowRegisterForACourse.UseVisualStyleBackColor = true;
+         this.btnShowRegisterForACourse.Click += new System.EventHandler(this.btnShowRegisterForACourse_Click);
          // 
          // Form1
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(401, 218);
+         this.ClientSize = new System.Drawing.Size(344, 189);
          this.Controls.Add(this.btnShowRegisterForACourse);
          this.Controls.Add(this.btnShowCourseEnrollment);
          this.Controls.Add(this.btnShowCoursesOffered);

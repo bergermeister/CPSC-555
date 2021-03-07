@@ -6,6 +6,26 @@
 
    class BusinessCourses
    {
+      RepositoryCourses _rep = new RepositoryCourses( );
 
+      public List< string > GetSemesters( )
+      {
+         return( _rep.GetSemesters( ) );
+      }
+
+      public List< CourseOfferedVM > GetCoursesOffered( string semester )
+      {
+         return( _rep.GetCoursesOffered( semester ) );
+      }
+
+      public List< CourseEnrollmentVM > GetCourseEnrollment( string semester, string courseNum )
+      {
+         return( _rep.GetCOurseEnrollment( semester, courseNum ) );
+      }
+
+      public List< string > GetCoursesOfferedForASemester( string semester )
+      {
+         return( _rep.GetCoursesOfferedForASemester( semester ) );
+      }
    }
 }
