@@ -70,6 +70,9 @@ namespace StudentWinApp
          // 
          // dgEnrollment
          // 
+         this.dgEnrollment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
          this.dgEnrollment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          this.dgEnrollment.Location = new System.Drawing.Point(138, 37);
          this.dgEnrollment.Margin = new System.Windows.Forms.Padding(1);

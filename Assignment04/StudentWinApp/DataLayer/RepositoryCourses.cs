@@ -91,7 +91,7 @@
          return( CList );
       }
 
-      public List< CourseEnrollmentVM > GetCOurseEnrollment( string semester, string courseNum )
+      public List< CourseEnrollmentVM > GetCourseEnrollment( string semester, string courseNum )
       {
          List< CourseEnrollmentVM > CList = new List< CourseEnrollmentVM >( );
          try

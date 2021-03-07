@@ -20,7 +20,7 @@
 
       public List< CourseEnrollmentVM > GetCourseEnrollment( string semester, string courseNum )
       {
-         return( _rep.GetCOurseEnrollment( semester, courseNum ) );
+         return( _rep.GetCourseEnrollment( semester, courseNum ) );
       }
 
       public List< string > GetCoursesOfferedForASemester( string semester )

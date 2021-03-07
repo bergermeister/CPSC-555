@@ -8,6 +8,7 @@
       FormCoursesOffered frmCoursesOffered = null;
       FormCourseEnrollment frmCourseEnrollment = null;
       FormRegisterForCourse frmRegisterForACourse = null;
+      FormViewTranscript frmViewTranscript = null;
 
       public Form1( )
       {
@@ -73,6 +74,27 @@
             else
             {
                frmRegisterForACourse.WindowState = FormWindowState.Normal;
+            }
+         }
+      }
+
+      private void btnViewTranscript_Click( object sender, EventArgs e )
+      {
+         if( frmViewTranscript == null )
+         {
+            frmViewTranscript = new FormViewTranscript( );
+            frmViewTranscript.Show( );
+         }
+         else
+         {
+            if( frmViewTranscript.IsDisposed )
+            {
+               frmViewTranscript = new FormViewTranscript( );
+               frmViewTranscript.Show( );
+            }
+            else
+            {
+               frmViewTranscript.WindowState = FormWindowState.Normal;
             }
          }
       }

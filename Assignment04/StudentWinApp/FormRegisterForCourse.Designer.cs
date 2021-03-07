@@ -47,6 +47,7 @@ namespace StudentWinApp
          this.btnRegisterForCourse.TabIndex = 13;
          this.btnRegisterForCourse.Text = "Register Student";
          this.btnRegisterForCourse.UseVisualStyleBackColor = true;
+         this.btnRegisterForCourse.Click += new System.EventHandler(this.btnRegisterForCourse_Click);
          // 
          // label3
          // 
