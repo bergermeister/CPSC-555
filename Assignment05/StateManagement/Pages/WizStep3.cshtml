@@ -1,0 +1,35 @@
+﻿@page
+@model StateManagement.Pages.WizStep3Model
+@{
+   ViewData[ "Title" ] = "WizStep3";
+}
+<h1>WizStep3</h1>
+<h4>UserInfo</h4>
+<hr />
+<div class="row">
+   <div class="col-md-4">
+      <form asp-action="WizStep3">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         <div class="form-group">
+            <label asp-for="UInfo.Telephone" class="control-label"></label>
+            <input asp-for="UInfo.Telephone" class="form-control" />
+            <span asp-validation-for="UInfo.Telephone" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="UInfo.CellPhone" class="control-label"></label>
+            <input asp-for="UInfo.CellPhone" class="form-control" />
+            <span asp-validation-for="UInfo.CellPhone" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="UInfo.UserPin" class="control-label"></label>
+            <input asp-for="UInfo.UserPin" class="form-control" />
+            <span asp-validation-for="UInfo.UserPin" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <input type="hidden" asp-for="UInfo.Wizhidden" class="form-control" />
+            <input type="submit" formnovalidate value="Prev" asp-page-handler="prevButton" name="prevButton" class="btn btn-primary" />
+            <input type="submit" value="Next" name="nextButton" asp-page-handler="nextButton" class="btn btn-primary" />
+         </div>
+      </form>
+   </div>
+</div>

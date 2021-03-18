@@ -1,0 +1,24 @@
+﻿@page
+@model StateManagement.Pages.SetProductOnSaleModel
+@{
+   ViewData[ "Title" ] = "SetProductOnSale";
+}
+<h1>Set Product On Sale</h1>
+<table class="table">
+   <tr><th>ProductId</th><th>ProductName</th><th>Price</th><th>Set OnSale</th></tr>
+   @foreach( var pr in Model.PList )
+   {
+      <tr>
+         <td>@pr.ProductId</td>
+         <td>@pr.ProductName</td>
+         <td>@pr.Price</td>
+         <td>
+            <a asp-page-handler="SetOnSale" asp-route-prodid="@pr.ProductId">SetOnSale</a>
+         </td>
+      </tr>
+   }
+</table>
+<form method="post">
+   <button class="btn-success" asp-page-handler="ClearSession">Clear Session</button>
+</form>
+<div style="color:red">@Model.Message</div>

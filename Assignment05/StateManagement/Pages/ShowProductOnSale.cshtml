@@ -1,0 +1,18 @@
+﻿@page
+@model StateManagement.Pages.ShowProductOnSaleModel
+@{
+   ViewData[ "Title" ] = "ShowProductOnSale";
+}
+<h1>Product On Sale</h1>
+@if( Model.Prod != null )
+{
+   @Model.Prod.ProductId
+   <br />
+   @Model.Prod.ProductName
+   <br />
+   @Model.Prod.Price
+}
+else
+{
+   @: No Product on Sale
+}

@@ -1,0 +1,37 @@
+﻿@page
+@model StateManagement.Pages.WizStep1Model
+@{
+   ViewData[ "Title" ] = "WizStep1";
+}
+<h1>WizStep1</h1>
+<h4>UserInfo</h4>
+<hr />
+<div class="row">
+   <div class="col-md-4">
+      <form asp-action="WizStep1">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         <div class="form-group">
+            <label asp-for="UInfo.FirstName" class="control-label"></label>
+            <input asp-for="UInfo.FirstName" class="form-control" />
+            <span asp-validation-for="UInfo.FirstName" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="UInfo.LastName" class="control-label"></label>
+            <input asp-for="UInfo.LastName" class="form-control" />
+            <span asp-validation-for="UInfo.LastName" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="UInfo.Email" class="control-label"></label>
+            <input asp-for="UInfo.Email" class="form-control" />
+            <span asp-validation-for="UInfo.Email" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <input type="submit" value="Next" class="btn btn-primary" />
+            <input type="hidden" asp-for="UInfo.Wizhidden" />
+         </div>
+      </form>
+   </div>
+</div>
+<div>
+   <a asp-page="Index">Back to Home</a>
+</div>
