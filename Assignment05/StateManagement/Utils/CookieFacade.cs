@@ -35,6 +35,18 @@ namespace StateManagement.Utils
             CookieStore.Set<Product>( productkey, value, expires );
          }
       }
-
+      const string uinfoKey = "uinfoKey";
+      public static UserInfo UInfo
+      {
+         get
+         {
+            return CookieStore.Get<UserInfo>( uinfoKey );
+         }
+         set
+         {
+            DateTime expires = DateTime.Now.AddMinutes(20);
+            CookieStore.Set<UserInfo>( uinfoKey, value, expires );
+         }
+      }
    }
 }

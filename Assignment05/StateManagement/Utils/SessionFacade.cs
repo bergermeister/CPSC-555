@@ -34,5 +34,18 @@ namespace StateManagement.Utils
             HttpContextHelper.HttpCtx.Session.Set< Product >( productKey, value );
          }
       }
+
+      const string uinfoKey = "uinfoKey";
+      public static UserInfo UInfo
+      {
+         get
+         {
+            return ( HttpContextHelper.HttpCtx.Session.Get<UserInfo>( uinfoKey ) );
+         }
+         set
+         {
+            HttpContextHelper.HttpCtx.Session.Set<UserInfo>( uinfoKey, value );
+         }
+      }
    }
 }
