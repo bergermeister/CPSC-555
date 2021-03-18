@@ -1,0 +1,24 @@
+﻿@page "{handler?}"
+@model CoreConcepts.Pages.MultiFormsModel
+<br />
+<div class="row">
+   <div class="col-md-2">
+      <form asp-page-handler="myedit" method="post">
+         <button class="btn btn-warning">Edit</button>
+         <input type="hidden" name="id" value="12345" />
+         <input name="nm" value="bill" />
+      </form>
+   </div>
+   <div class="col-md-2">
+      <form asp-page-handler="mydelete" asp-route-idd="45" asp-route-data="55"
+            method="post">
+         <button class="btn btn-danger">Delete</button>
+      </form>
+   </div>
+   <div class="col-md-2">
+      <form asp-page-handler="myview" method="post">
+         <button class="btn btn-success">View</button>
+      </form>
+   </div>
+</div>
+<div id="d1">@Model.Message</div>

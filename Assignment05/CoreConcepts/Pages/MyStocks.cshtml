@@ -1,0 +1,10 @@
+﻿@page
+@model CoreConcepts.Pages.MyStocksModel
+@{
+   ViewData[ "Title" ] = "MyStocks";
+}
+<h1>My Stocks</h1>
+Service Creation Time = @Model.ServiceDT<br />
+
+<hr />
+<partial name="_MyPortfolio" model="Model.STList" />

@@ -1,6 +1,49 @@
 ﻿@page
 @{
    ViewData[ "Title" ] = "UserReg";
-
-
 }
+
+<h1>User Reg - Without a server side class</h1>
+<ul>
+   <li>Every Razor page starts with @@page (two at signs means a single at sign)</li>
+   <li>The second line couldbethe page model class</li>
+   <li>The page has to have a cshtml extension</li>
+   <li>
+      server side code can be embedded in the page using Razor syntax (C# code in the
+      cshtml page is referred to as Razor)
+   </li>
+</ul>
+<hr />
+<div class="container">
+   <form name="f1" method="post" action="~/SimpleReceiveForm">
+      <div class="form-group row">
+         <label for="txtNM" class="col-md-2">Name</label>
+         <input type="text" class="form-control col-md-3" name="txtNM" id="txtNM" />
+      </div>
+      <div class="form-group row">
+         <label for="txtEmail" class="col-md-2">Email</label>
+         <input type="text" class="form-control col-md-3" name="txtEmail"
+                id="txtEmail" />
+      </div>
+      <button type="submit" class="btn btn-success offset-md-2">Submit</button>
+   </form>
+   @{
+      string name = String.Empty;
+      string email = String.Empty;
+      if( Request.HasFormContentType )
+      {
+         name = Request.Form[ "txtNM" ];
+         email = Request.Form[ "txtEmail" ];
+         ViewData[ "NMEMAIL" ] = name + " : " + email;
+      }
+   }
+   @{
+      if( ( name != String.Empty ) || ( email != String.Empty ) )
+      {
+         @:Name Entered = @name Email Entered=@email
+      }
+   }
+   <div id="d1">
+      @ViewData[ "NMEMAIL" ]
+   </div>
+</div>

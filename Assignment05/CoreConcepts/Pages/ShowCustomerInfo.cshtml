@@ -1,0 +1,14 @@
+﻿@page
+@model CoreConcepts.Pages.ShowCustomerInfoModel
+@using System.Text
+
+<div>
+   <p>First Name : @Model.CInfo.FirstName</p>
+   <p>Last Name : @Model.CInfo.LastName</p>
+   <p>Email : @Model.CInfo.Email</p>
+</div>
+<hr/>
+@{ 
+   ASCIIEncoding asc = new ASCIIEncoding( );
+}
+<partial name="_MyPortfolio" model="Model.CInfo.STList" />

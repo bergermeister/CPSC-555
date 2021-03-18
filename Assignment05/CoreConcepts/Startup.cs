@@ -11,11 +11,16 @@ using System.Threading.Tasks;
 
 namespace CoreConcepts
 {
+   using Pages.Models;
+   using Pages.Services;
+
    public class Startup
    {
       public Startup( IConfiguration configuration )
       {
          Configuration = configuration;
+         string connString = Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString( this.Configuration, "ComplexDb2" );
+         Pages.Utils.ConnectionStringHelper.ConnectionString = connString;
       }
 
       public IConfiguration Configuration { get; }
@@ -23,7 +28,17 @@ namespace CoreConcepts
       // This method gets called by the runtime. Use this method to add services to the container.
       public void ConfigureServices( IServiceCollection services )
       {
-         services.AddRazorPages( );
+         services.Configure< EmailSettingsOptions >( Configuration );
+         services.Configure< CompanyOptions >( Configuration );
+
+         //services.AddSingleton< IStocks, StockPrices >( );
+         services.AddSingleton< IStocks, StockPricesCheapService >( );
+         //services.AddTransient< IStocks, StockPricesCheapService >( );
+         //services.AddScoped< IStocks, StockPricesCheapService >( );
+         services.AddRazorPages( ).AddRazorOptions( options =>
+         {
+            options.PageViewLocationFormats.Add( "/Pages/MyPartials/{0}.cshtml" );
+         });
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,17 @@
+﻿@*page*@
+@*above line must not be present in a partial view, so it is commented out*@
+@model List<Models.StockInfo>
+@{
+   var m = Model;
+}
+<table class="table">
+   <tr>
+      <th>Stock</th>
+      <th>Price</th>
+   </tr>
+   @foreach( var item in Model )
+   {
+      <tr><td>@item.Symbol</td><td>@item.Price</td></tr>
+   }
+   <tr></tr>
+</table>

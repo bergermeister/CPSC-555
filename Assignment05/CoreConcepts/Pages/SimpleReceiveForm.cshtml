@@ -1,0 +1,23 @@
+﻿@page
+@{
+   ViewData[ "Title" ] = "SimpleReceiveForm";
+}
+
+<h1>Simple Receive Form - From another page</h1>
+@{
+   string name = String.Empty;
+   string email = String.Empty;
+   if( Request.HasFormContentType )
+   {
+      name = Request.Form[ "txtNM" ];
+   email = Request.Form[ "txtEmail" ];
+      ViewData[ "NMEMAIL" ] = name + " : " + email;
+   }
+}
+@{
+   if( ( name != String.Empty ) || ( email != String.Empty ) )
+   {
+      @:Name Entered = @name Email Entered=@email
+   }
+}
+

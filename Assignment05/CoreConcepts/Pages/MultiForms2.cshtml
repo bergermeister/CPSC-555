@@ -1,0 +1,15 @@
+﻿@page
+@model CoreConcepts.Pages.MultiForms2Model
+@{
+   ViewData[ "Title" ] = "MultiForm2";
+}
+
+<h1>MultiForm2</h1>
+<form method="post">
+   <button class="btn-warning" asp-route-idd="5" asp-page-handler="UpdateInfo">Update Info</button>
+   <button class="btn-success" asp-page-handler="FindInfo">Find Info</button>
+   <input name="txtT1" />
+</form>
+<div id="d1">
+   @Model.Message
+</div>
