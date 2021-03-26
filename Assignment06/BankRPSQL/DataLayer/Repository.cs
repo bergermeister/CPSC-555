@@ -8,6 +8,7 @@
    using BankRPSQL.Utils;
    using BankRPSQL.Models;
    using BankRPSQL.Models.ViewModels;
+   using BankRPSQL.Models.DomainModels;
 
    public class Repository : IRepositoryBanking, IRepositoryAuthentication
    {
@@ -164,7 +165,49 @@
 
       public bool TransferSavingToChecking( long checkingAccountNum, long savingAccountNum, decimal amount, decimal transactionFee )
       {
-         throw new NotImplementedException( );
+         // transfer checking to saving has to be done as a transaction
+         // transactions are assocated with a connection
+         bool ret = false;
+         string CONNSTR = ConnectionStringHelper.CONNSTR;
+         SqlConnection conn = new SqlConnection( CONNSTR );
+         SqlTransaction sqtr = null;
+         try
+         {
+            conn.Open( );
+            sqtr = conn.BeginTransaction( );
+            int rows = UpdateSavingBalanceTR( savingAccountNum, -1 * amount, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in transferring from Checking Account.." );
+            object obj = GetSavingBalanceTR( savingAccountNum, conn, sqtr, true );
+            if( obj != null )
+            {
+               if( decimal.Parse( obj.ToString( ) ) < 0 ) // exception causes transaction to be rolled back
+                  throw new Exception( "Insufficient funds in Checking Account - rolling back transaction" );
+            }
+            rows = UpdateCheckingBalanceTR( checkingAccountNum, amount, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in transferring to Saving Account.." );
+            rows = AddToTransactionHistoryTR( checkingAccountNum, savingAccountNum, amount, 101, transactionFee, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in transferring to Saving Account.." );
+            else
+            {
+               sqtr.Commit( );
+               ret = true;
+               // clear the cache15
+               //CacheAbstraction cabs = new CacheAbstraction();
+               //cabs.Remove("TRHISTORY");
+            }
+         }
+         catch( Exception )
+         {
+            throw;
+         }
+         finally
+         {
+            conn.Close( );
+         }
+         return ret;
       }
 
       private int UpdateCheckingBalanceTR( long checkingAccountNum, decimal amount, DbConnection conn, DbTransaction sqtr, bool doTransaction )
@@ -230,6 +273,25 @@
          return objBal;
       }
 
+      private object GetSavingBalanceTR( long savingAccountNum, DbConnection conn, DbTransaction sqtr, bool doTransaction )
+      {
+         object objBal = null;
+         try
+         {
+            string sql2 = "select Balance from SavingAccounts where SavingAccountNumber=@SavingAccountNumber";
+            List<DbParameter> ParamList2 = new List<DbParameter>();
+            SqlParameter pa = new SqlParameter("@SavingAccountNumber", SqlDbType.BigInt);
+            pa.Value = savingAccountNum;
+            ParamList2.Add( pa );
+            objBal = _idac.GetSingleAnswer( sql2, ParamList2, conn, sqtr, doTransaction );
+         }
+         catch( Exception )
+         {
+            throw;
+         }
+         return objBal;
+      }
+
       private int AddToTransactionHistoryTR( long checkingAccountNum, long savingAccountNum, decimal amount, int transTypeId, 
                                              decimal transFee, DbConnection conn, DbTransaction sqtr, bool doTransaction )
       {
@@ -264,18 +326,21 @@
          return rows;
       }
 
-      public List<TransactionHistoryVM> GetTransactionHistory( long checkingAccountNum )
+      public List<TransactionHistoryVM> GetTransactionHistory( long checkingAccountNum, long savingAccountNum )
       {
          List<TransactionHistoryVM> THList = null;
          try
          {
             string sql = "select th.*, trt.TransactionTypeName from TransactionHistories th " +
                          "inner join TransactionTypes trt on th.TransactionTypeId=trt.TransactionTypeId " +
-                         "where CheckingAccountNumber=@CheckingAccountNumber";
+                         "where CheckingAccountNumber=@CheckingAccountNumber or SavingAccountNumber=@SavingAccountNumber";
             List<DbParameter> ParamList = new List<DbParameter>();
             SqlParameter p1 = new SqlParameter("@CheckingAccountNumber", SqlDbType.BigInt);
+            SqlParameter p2 = new SqlParameter("@SavingAccountNumber", SqlDbType.BigInt);
             p1.Value = checkingAccountNum;
+            p2.Value = savingAccountNum;
             ParamList.Add( p1 );
+            ParamList.Add( p2 );
             DataTable dt = _idac.GetManyRowsCols(sql, ParamList);
             string amt = dt.Rows[0]["Amount"].ToString();
             THList = DBList.ToList<TransactionHistoryVM>( dt );
@@ -320,6 +385,110 @@
             throw;
          }
          return uinfo;
+      }
+
+      public List< BillType > GetBillTypes( )
+      {
+         List< BillType > BTList = null;
+         try
+         {
+            string sql = "select bt.* from BillTypes bt";
+            DataTable dt = _idac.GetManyRowsCols( sql, null );
+            BTList = DBList.ToList< BillType >( dt );
+         }
+         catch( Exception )
+         {
+            throw;
+         }
+         return BTList;
+      }
+
+      public bool PayBillFromChecking( long checkingAccountNum, decimal amount, decimal transactionFee )
+      {
+         // transfer checking to bill has to be done as a transaction
+         // transactions are associated with a connection
+         bool ret = false;
+         string CONNSTR = ConnectionStringHelper.CONNSTR;
+         SqlConnection conn = new SqlConnection( CONNSTR );
+         SqlTransaction sqtr = null;
+         try
+         {
+            conn.Open( );
+            sqtr = conn.BeginTransaction( );
+            int rows = UpdateCheckingBalanceTR( checkingAccountNum, -1 * amount, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in transferring from Checking Account.." );
+            object obj = GetCheckingBalanceTR( checkingAccountNum, conn, sqtr, true );
+            if( obj != null )
+            {
+               if( decimal.Parse( obj.ToString( ) ) < 0 ) // exception causes transaction to be rolled back
+                  throw new Exception( "Insufficient funds in Checking Account - rolling back transaction" );
+            }
+            rows = AddToTransactionHistoryTR( checkingAccountNum, 0, amount, 102, transactionFee, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in Bill Pay From Checking.." );
+            else
+            {
+               sqtr.Commit( );
+               ret = true;
+               // clear the cache15
+               //CacheAbstraction cabs = new CacheAbstraction();
+               //cabs.Remove("TRHISTORY");
+            }
+         }
+         catch( Exception )
+         {
+            throw;
+         }
+         finally
+         {
+            conn.Close( );
+         }
+         return ret;
+      }
+
+      public bool PayBillFromSaving( long savingAccountNum, decimal amount, decimal transactionFee )
+      {
+         // transfer checking to bill has to be done as a transaction
+         // transactions are associated with a connection
+         bool ret = false;
+         string CONNSTR = ConnectionStringHelper.CONNSTR;
+         SqlConnection conn = new SqlConnection( CONNSTR );
+         SqlTransaction sqtr = null;
+         try
+         {
+            conn.Open( );
+            sqtr = conn.BeginTransaction( );
+            int rows = UpdateSavingBalanceTR( savingAccountNum, -1 * amount, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in transferring from Saving Account.." );
+            object obj = GetSavingBalanceTR( savingAccountNum, conn, sqtr, true );
+            if( obj != null )
+            {
+               if( decimal.Parse( obj.ToString( ) ) < 0 ) // exception causes transaction to be rolled back
+                  throw new Exception( "Insufficient funds in Saving Account - rolling back transaction" );
+            }
+            rows = AddToTransactionHistoryTR( 0, savingAccountNum, amount, 102, transactionFee, conn, sqtr, true );
+            if( rows == 0 )
+               throw new Exception( "Problem in Bill Pay From Saving.." );
+            else
+            {
+               sqtr.Commit( );
+               ret = true;
+               // clear the cache15
+               //CacheAbstraction cabs = new CacheAbstraction();
+               //cabs.Remove("TRHISTORY");
+            }
+         }
+         catch( Exception )
+         {
+            throw;
+         }
+         finally
+         {
+            conn.Close( );
+         }
+         return ret;
       }
    }
 }

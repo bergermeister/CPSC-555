@@ -27,7 +27,7 @@ namespace BankRPSQL.Pages
          else
          {
             UserInfo uinfo = SessionFacade.USERINFO;
-            TList = _ibusbank.GetTransactionHistory( uinfo.CheckingAccountNumber );
+            TList = _ibusbank.GetTransactionHistory( uinfo.CheckingAccountNumber, uinfo.SavingAccountNumber );
          }
          return Page( );
       }

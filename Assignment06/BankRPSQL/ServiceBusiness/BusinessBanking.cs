@@ -1,6 +1,7 @@
 ﻿namespace BankRPSQL.ServiceBusiness
 {
    using BankRPSQL.DataLayer;
+   using BankRPSQL.Models.DomainModels;
    using BankRPSQL.Models.ViewModels;
    using System;
    using System.Collections.Generic;
@@ -40,18 +41,32 @@
 
       public bool TransferCheckingToSaving( long checkingAccountNum, long savingAccountNum, decimal amount )
       {
-         return _irepbank.TransferCheckingToSaving( checkingAccountNum,
-        savingAccountNum, amount, 0 );
+         return _irepbank.TransferCheckingToSaving( checkingAccountNum, savingAccountNum, amount, 0 );
       }
 
       public bool TransferSavingToChecking( long checkingAccountNum, long savingAccountNum, decimal amount )
       {
-         throw new NotImplementedException( );
+         return _irepbank.TransferSavingToChecking( checkingAccountNum, savingAccountNum, amount, 0 );
       }
 
-      List<TransactionHistoryVM> IBusinessBanking.GetTransactionHistory( long checkingAccountNum )
+      public List< TransactionHistoryVM > GetTransactionHistory( long checkingAccountNum, long savingAccountNum )
       {
-         return _irepbank.GetTransactionHistory( checkingAccountNum );
+         return _irepbank.GetTransactionHistory( checkingAccountNum, savingAccountNum );
+      }
+
+      public List< BillType > GetBillTypes( )
+      {
+         return _irepbank.GetBillTypes( );
+      }
+
+      public bool PayBillFromChecking( long checkingAccountNum, decimal amount, decimal transactionFee )
+      {
+         return _irepbank.PayBillFromChecking( checkingAccountNum, amount, transactionFee );
+      }
+
+      public bool PayBillFromSaving( long savingAccountNum, decimal amount, decimal transactionFee )
+      {
+         return _irepbank.PayBillFromSaving( savingAccountNum, amount, transactionFee );
       }
    }
 }
