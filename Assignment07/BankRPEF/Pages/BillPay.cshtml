@@ -1,0 +1,37 @@
+﻿@page
+@model BankRPEF.Pages.BillPayModel
+@{
+   ViewData[ "Title" ] = "BillPay";
+}
+<h1>Bill Pay</h1>
+<form method="post">
+   <table class="table">
+      <tr>
+         <td>Bill Type</td>
+         <td>
+            <select asp-items="@Model.BillTypes" asp-for="@Model.SelectedBillType">
+               <option value="0">Please select</option>
+            </select>
+         </td>
+      </tr>
+      <tr>
+         <td>From Account</td>
+         <td>
+            <select asp-items="@Model.AccountTypes" asp-for="@Model.SelectedAccountType">
+               <option value="0">Please select</option>
+            </select>
+         </td>
+      </tr>
+      <tr>
+         <td>Transfer Amount</td>
+         <td><input asp-for="TransferAmount" /></td>
+      </tr>
+      <tr>
+         <td></td>
+         <td>
+            <input type="submit" value="Transfer" class="btn-success" />
+         </td>
+      </tr>
+   </table>
+   <div>@Model.Message</div>
+</form>
