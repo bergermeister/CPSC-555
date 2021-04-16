@@ -14,9 +14,9 @@ namespace BankRPEF.Cache
       }
       public CacheAbstraction( ) // default cache provider
                                  // : this(new HttpContextCacheAdapter())
-                                 //: this(new NullObjectCache())
+                                 : this(new NullObjectCache())
                                  //: this( new CouchBaseCacheAdapter( ) )
-                                 : this( new RedisCacheAdapter( ) )
+                                 // : this( new RedisCacheAdapter( ) )
       {
       }
       

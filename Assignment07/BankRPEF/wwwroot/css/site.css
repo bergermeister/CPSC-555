@@ -69,3 +69,25 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.mytable {
+   border-collapse: collapse;
+}
+
+.mytable th, td {
+   border: 1px solid silver;
+   padding: 1px;
+}
+
+.mytable tr:hover td {
+   background-color: lightsteelblue;
+}
+
+.mytable tr:nth-child(odd) {
+   background-color: aliceblue;
+}
+
+.mytable th {
+   background-color: dodgerblue;
+   color: yellow;
+}

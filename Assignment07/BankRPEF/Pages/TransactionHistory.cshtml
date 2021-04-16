@@ -3,49 +3,53 @@
 @{
    ViewData[ "Title" ] = "TransactionHistory";
 }
+@Html.AntiForgeryToken( )
 <h2>Transaction History</h2>
-<table class="table">
-   <tr>
-      <th>
-         Transaction Date
-      </th>
-      <th>
-         Checking AcctNum
-      </th>
-      <th>
-         SavingAcctNum
-      </th>
-      <th>
-         Amount
-      </th>
-      <th>
-         TransactionFee
-      </th>
-      <th>
-         Transaction Name
-      </th>
-   </tr>
-   @foreach( var item in Model.TList )
-   {
-      <tr>
-         <td>
-            @item.TransactionDate
-         </td>
-         <td>
-            @item.CheckingAccountNumber
-         </td>
-         <td>
-            @item.SavingAccountNumber
-         </td>
-         <td>
-            @item.Amount
-         </td>
-         <td>
-            @item.TransactionFee
-         </td>
-         <td>
-            @item.TransactionTypeName
-         </td>
-      </tr>
-   }
-</table>
+<div class="container">
+   <br />
+   <div style="width:90%; margin:0 auto;">
+      <table id="history" class="table mytable table-sm table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+         <thead>
+            <tr>
+               <th>TransactionDate</th>
+               <th>CheckingAcctNum</th>
+               <th>SavingAcctNum</th>
+               <th>Amount</th>
+               <th>TransactionFee</th>
+               <th>TransactionName</th>
+            </tr>
+         </thead>
+      </table>
+   </div>
+</div>
+@section Scripts {
+   <script>
+      $(function () {
+         $("#history").DataTable({
+            "processing": true, // to show progress bar
+            "serverSide": true, //
+            "filter": true, // to do search
+            "orderMulti": false, // to disable multiple column
+            "ajax": {
+               "url": "/TransactionHistory?handler=LoadData",
+               "type": "POST",
+               "datatype": "json",
+               "cache": false,
+               // AntiforgeryToken is required by RazorPages
+               "headers": {
+                  RequestVerificationToken:
+                     $('input:hidden[name="__RequestVerificationToken"]').val()
+               }
+            },
+            "columns": [
+               { "data": "transactionDate", "name": "TransactionDate", "autoWidth": true },
+               { "data": "checkingAccountNumber", "name": "CheckingAcctNum", "autoWidth": true },
+               { "data": "savingAccountNumber", "name": "SavingAcctNum", "autoWidth": true },
+               { "data": "amount", "name": "Amount", "autoWidth": true },
+               { "data": "transactionFee", "name": "TransactionFee", "autoWidth": true },
+               { "data": "transactionTypeName", "name": "TransactionName", "autoWidth": true },
+            ],
+         });
+      });
+   </script>
+}
