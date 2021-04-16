@@ -1,0 +1,30 @@
+﻿@page
+@model AjaxCore.Pages.CourseEnrollmentModel
+@{
+   ViewData[ "Title" ] = "CourseEnrollment";
+}
+<h3>Course Enrollment</h3>
+<table class="table">
+   <tr>
+      <td>
+         <!--Dropdown-->
+         Course <select asp-for="CourseNumSelected" asp-items="Model.CRSList"></select>
+      </td>
+      <td style="width:100%">
+         <!--Enrollment-->
+         <div id="grid"></div>
+      </td>
+   </tr>
+</table>
+@section Scripts{
+   <script>
+      $(function () {
+         var cnum = encodeURIComponent($("#CourseNumSelected").val());
+         $("#grid").load('/CourseEnrollment?handler=EnrollPartial&cnum=' + cnum);
+         $('#CourseNumSelected').change(function () {
+            var cnum = encodeURIComponent($("#CourseNumSelected").val());
+            $("#grid").load('/CourseEnrollment?handler=EnrollPartial&cnum=' + cnum);
+         });
+      });
+   </script>
+}

@@ -1,0 +1,67 @@
+﻿@page
+@model AjaxCore.Pages.AddCustomerModel
+@{
+   ViewData[ "Title" ] = "AddCustomer";
+}
+<h1>Add Customer</h1>
+<form method="post" id="form" class="col-sm-6">
+   <div class="form-group row">
+      <label asp-for="Cust.FirstName" class="col-sm-3 col-form-label"></label>
+      <div class="col-sm-7">
+         <input asp-for="Cust.FirstName" class="form-control">
+         <span style="color:red" asp-validation-for="Cust.FirstName"></span>
+      </div>
+   </div>
+   <div class="form-group row">
+      <label asp-for="Cust.LastName" class="col-sm-3 col-form-label"></label>
+      <div class="col-sm-7">
+         <input asp-for="Cust.LastName" class="form-control">
+         <span style="color:red" asp-validation-for="Cust.LastName"></span>
+      </div>
+   </div>
+   <div class="form-group row">
+      <label asp-for="Cust.DateOfBirth" class="col-sm-3 col-form-label"></label>
+      <div class="col-sm-7">
+         <input asp-for="Cust.DateOfBirth" class="form-control">
+      </div>
+   </div>
+   <div class="form-group row">
+      <label asp-for="Cust.Email" class="col-sm-3 col-form-label"></label>
+      <div class="col-sm-7">
+         <input asp-for="Cust.Email" class="form-control">
+         <span style="color:red" asp-validation-for="Cust.Email"></span>
+      </div>
+   </div>
+   <div class="form-group row">
+      <div class="col-sm-7 offset-sm-3">
+         <button class="btn btn-primary" id="Submit">Submit</button>
+      </div>
+   </div>
+</form>
+<div id="status"></div>
+<div id="info"></div>
+@section Scripts
+{
+   <script>
+      $(function () {
+         $("#Submit").click(function (evt) {
+            $("#info").html("");
+            $("#status").html("");
+            ret = $("#form").valid();
+            if (ret == true) {
+               $.post('', $('form').serialize(), function (res) {
+                  var jsonObj = $.parseJSON(res);
+                  $("#status").html(jsonObj.status);
+                  if (jsonObj.status === undefined) {
+                     $("#info").html(jsonObj.FirstName + "<br/>" +
+                        jsonObj.LastName + "<br/>" +
+                        jsonObj.Email + "<br/>" + jsonObj.DateOfBirth);
+                  }
+               });
+            }
+            evt.preventDefault(); // stop submission to the server
+         });
+      });
+   </script>
+   @{await Html.RenderPartialAsync( "_ValidationScriptsPartial" ); }
+}

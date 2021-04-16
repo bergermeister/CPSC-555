@@ -1,0 +1,14 @@
+﻿@*page*@
+@model List<Models.Enrollment>
+<table class="table">
+   <tr><th>First Name</th><th>Last Name</th><th>StudentId</th><th>CourseNum</th></tr>
+   @foreach( var item in Model )
+   {
+      <tr>
+         <td>@item.FirstName</td>
+         <td>@item.LastName</td>
+         <td>@item.StudentId</td>
+         <td>@item.CourseNum</td>
+      </tr>
+   }
+</table>

@@ -1,0 +1,59 @@
+﻿@page
+@model AjaxCore.Pages.SemesterCourseEnrollmentModel
+@{
+   ViewData[ "Title" ] = "SemesterCourseEnrollment";
+}
+<h1>Course Enrollment for a Semester</h1>
+<table class="table">
+   <tr>
+      <td style="width:150px">
+         <!--semester drop down-->
+         <select asp-for="SemesterId" asp-items="Model.Semesters">
+            <option value="">Select Semester</option>
+         </select>
+      </td>
+      <td style="width:150px">
+         <!--course drop down, javascript will populate it-->
+         <select asp-for="CourseId"></select>
+      </td>
+      <td style="width:80%">
+         <!--Enrollment-->
+         <div id="wait" style="display:none">
+            <button class="btn btn-primary" type="button" disabled>
+               <span class="spinner-border spinner-border-sm" role="status"
+                     aria-hidden="true"></span>
+               Loading...
+            </button>
+         </div>
+         <div id="gridenrollment"></div>
+      </td>
+   </tr>
+</table>
+@section Scripts{
+   <script>
+      $(function () {
+         $("#SemesterId").change(function () {
+            var semesterId = $(this).val();
+            $("#CourseId").empty();
+            $("#gridenrollment").html("");
+            $("#CourseId").append("<option value=''>Select Course</option>");
+            $.getJSON('?handler=Courses&SemesterId=' + semesterId,
+               (data) => {
+                  $.each(data, function (i, item) {
+                     $("#CourseId").append('<option value="' + item.courseNum + '">'
+                        + item.courseName + '</option>');
+                  });
+               });
+         });
+      });
+      $("#CourseId").change(function () {
+         var courseNum = encodeURIComponent($(this).val());
+         $("#wait").css({ 'display': 'block' });
+         $("#gridenrollment").html('');
+         $("#gridenrollment").load('?handler=PartialEnrollment&CourseId=' + courseNum,
+            function () {
+               $("#wait").css({ 'display': 'none' }); // for animation of wait
+            });
+      });
+   </script>
+}
