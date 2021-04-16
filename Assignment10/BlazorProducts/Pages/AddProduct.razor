@@ -1,0 +1,53 @@
+﻿@page "/addproduct"
+@using BlazorProducts.Data
+@using BlazorProducts.Models
+@using BlazorProducts.Services
+@inject ProductDataService ProductService
+<h1>Add Product</h1>
+@if( ( PList == null ) || ( CList == null ) )
+{
+   <p><em>Loading...</em></p>
+}
+else
+{
+   <EditForm Model="@prod" OnValidSubmit="@validateSubmission">
+      <DataAnnotationsValidator />
+      <ValidationSummary />
+      <table>
+         <tr><td>Name:    </td><td><InputText id="name" @bind-Value="prod.ProductName" /></td></tr>
+         <tr><td>Price:   </td><td><InputNumber id="Price" @bind-Value="prod.Price" /></td></tr>
+         <tr>
+            <td>Category:</td>
+            <select class="form-control" @bind="prod.CategoryId">
+               <option value="">-- Select Category --</option>
+               @foreach( var cat in CList )
+               {
+                  <option value="@cat.CategoryId">@cat.CategoryName</option>
+               }
+            </select>
+         </tr>
+      </table>
+
+      <button type="submit">Submit</button>
+   </EditForm>
+   <p>Status: @status</p>
+}
+@code {
+   private Products prod = new Products();
+   List<Categories> CList;
+   List<Products>   PList;
+   string status;
+
+   protected override async Task OnInitializedAsync( )
+   {
+      CList = await ProductService.GetCategories( );
+      PList = await ProductService.GetAllProducts( );
+   }
+
+   private void validateSubmission( )
+   {
+      prod.ProductId = PList.Last( ).ProductId + 1;
+      ProductService.CreateProduct( prod );
+      status = "Product Created.";
+   }
+}
