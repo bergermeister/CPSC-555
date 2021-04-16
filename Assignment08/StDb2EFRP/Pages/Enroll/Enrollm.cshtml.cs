@@ -27,54 +27,29 @@ namespace StDb2EFRP.Pages.Enroll
       public IList<EnrollmentVM> EList { get; set; }
       //-------------------------------------------------
 
-      public async Task OnGetAsync()
+      public void OnGet( )
       {
          // get courses offered------
-         IList<CoursesOffered> CoursesOfferedList = await
-         _context.CoursesOffereds.OrderBy(c => c.CourseNum).ToListAsync();
-         // get enrollment for first course
+         IList<CoursesOffered> CoursesOfferedList = _context.CoursesOffereds.OrderBy(c => c.CourseNum).ToList();
          string firstCourse = "";
-         EList = new List<EnrollmentVM>( );
-         IList<Enrollment> EnrollList = null;
          if( CoursesOfferedList.Count > 0 )
          {
             firstCourse = CoursesOfferedList[ 0 ].CourseNum;
-            EnrollList = await _context.Enrollments
-               .Include( e => e.CourseNumNavigation )
-               .Include( e => e.Student ).Where( e => e.CourseNum == firstCourse ).ToListAsync( );
-         }
-         // convert to EnrollmentVM list
-         foreach( var item in EnrollList )
-         {
-            EnrollmentVM evm = new EnrollmentVM
-            {
-               FirstName = item.Student.FirstName,
-               LastName = item.Student.LastName,
-               Credits = (int)item.CourseNumNavigation.CreditHours,
-               StudentId = item.StudentId
-            };
-            EList.Add( evm );
          }
          SelectedCourse = firstCourse;
          CSList = new SelectList( CoursesOfferedList, "CourseNum", "CourseNum" );
       }
 
-      public async Task OnPostAsync( )
+      public PartialViewResult OnGetEnrollPartial( string cnum )
       {
-         // get courses offered------
-         IList<CoursesOffered> CoursesOfferedList = await
-            _context.CoursesOffereds.OrderBy(c => c.CourseNum).ToListAsync();
-         // get enrollment for first course
-         string selCourse = SelectedCourse;
-         EList = new List<EnrollmentVM>( );
-         IList<Enrollment> EnrollList = null;
-         if( CoursesOfferedList.Count > 0 )
-         {
-            EnrollList = await _context.Enrollments
-               .Include( e => e.CourseNumNavigation )
-               .Include( e => e.Student ).Where( e => e.CourseNum == selCourse ).ToListAsync( );
-         }
+         SelectedCourse = cnum;
+         // will be triggered via the ajax call from the client
+         IList<Enrollment> EnrollList = _context.Enrollments
+            .Include( e => e.CourseNumNavigation )
+            .Include( e => e.Student ).Where( e => e.CourseNum == cnum ).ToList( );
+
          // convert to EnrollmentVM list
+         EList = new List<EnrollmentVM>( );
          foreach( var item in EnrollList )
          {
             EnrollmentVM evm = new EnrollmentVM
@@ -82,12 +57,13 @@ namespace StDb2EFRP.Pages.Enroll
                FirstName = item.Student.FirstName,
                LastName = item.Student.LastName,
                Credits = (int)item.CourseNumNavigation.CreditHours,
-               StudentId = item.StudentId
+               StudentId = item.StudentId,
+               CourseNum = cnum
             };
             EList.Add( evm );
          }
-         SelectedCourse = selCourse;
-         CSList = new SelectList( CoursesOfferedList, "CourseNum", "CourseNum" );
+         
+         return Partial( "_EnrollmPartial", EList );
       }
    }
 }

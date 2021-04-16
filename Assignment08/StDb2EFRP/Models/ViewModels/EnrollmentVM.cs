@@ -6,6 +6,7 @@
       public string LastName { get; set; }
       public int Credits { get; set; }
       public int StudentId { get; set; }
+      public string CourseNum { get; set; }
 
    }
 }
