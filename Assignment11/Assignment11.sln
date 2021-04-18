@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstDocker", "FirstDocker\FirstDocker.csproj", "{96192196-27C7-4495-80B6-ADF17F2A7992}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonServiceDocker", "PersonServiceDocker\PersonServiceDocker.csproj", "{9906A30A-D952-4E1B-B8E6-FB7865314F55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonServiceDocker", "PersonServiceDocker\PersonServiceDocker.csproj", "{9906A30A-D952-4E1B-B8E6-FB7865314F55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonServiceDockerClient", "PersonServiceDockerClient\PersonServiceDockerClient.csproj", "{1982D44A-5AF5-4DF0-8135-30CDCC6929C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonServiceDockerClient", "PersonServiceDockerClient\PersonServiceDockerClient.csproj", "{1982D44A-5AF5-4DF0-8135-30CDCC6929C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIDTokenAPI", "GUIDTokenAPI\GUIDTokenAPI.csproj", "{77FEAE06-18A2-4A8D-8B6A-5D5E887AFDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUIDTokenAPI", "GUIDTokenAPI\GUIDTokenAPI.csproj", "{77FEAE06-18A2-4A8D-8B6A-5D5E887AFDDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankRPEF", "BankRPEF\BankRPEF.csproj", "{4A4B6E3C-3C4E-48DC-9948-5D8761AC37A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{77FEAE06-18A2-4A8D-8B6A-5D5E887AFDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77FEAE06-18A2-4A8D-8B6A-5D5E887AFDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77FEAE06-18A2-4A8D-8B6A-5D5E887AFDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4B6E3C-3C4E-48DC-9948-5D8761AC37A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4B6E3C-3C4E-48DC-9948-5D8761AC37A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4B6E3C-3C4E-48DC-9948-5D8761AC37A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4B6E3C-3C4E-48DC-9948-5D8761AC37A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
